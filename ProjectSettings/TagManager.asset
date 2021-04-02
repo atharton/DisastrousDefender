@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Defenders/Castle
+  - Enemies
+  - 
+  - Enemies Path
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Mouse Clickables
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 593915173
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Unit
+    uniqueID: 2253986941
+    locked: 0
+  - name: Projectile
+    uniqueID: 2335980169
+    locked: 0
+  - name: Foreground
+    uniqueID: 3417633325
+    locked: 0
