@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class Attacker : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
-    [SerializeField] float baseForce = 1f;
+    [SerializeField] float attackRange = 1f;
+    [SerializeField] LayerMask attackLayer;
     float currentSpeed;
     Vector2 force;
     //[SerializeField] float damage = 40;
@@ -16,9 +17,9 @@ public class Attacker : MonoBehaviour
     SpriteRenderer mySpriteRenderer;
     BoxCollider2D myBoxCollider2D;
     Rigidbody2D myRigidBody2D;
-    CapsuleCollider2D myAttackRangeCollider2D;
+    RaycastHit2D myAttackRaycast;
     DamageDealer myDamageDealer;
-    Stats myStats;
+    Health myStats;
     Drops myDrops;
     ClickController clickController;
 
@@ -43,9 +44,8 @@ public class Attacker : MonoBehaviour
     {
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
-        myStats = GetComponent<Stats>();
+        myStats = GetComponent<Health>();
         myDrops = GetComponent<Drops>();
-        myAttackRangeCollider2D = GetComponent<CapsuleCollider2D>();
         myRigidBody2D = GetComponent<Rigidbody2D>();
         myDamageDealer = GetComponent<DamageDealer>();
         origColor = mySpriteRenderer.color;
@@ -63,6 +63,10 @@ public class Attacker : MonoBehaviour
         //UpdateAnimationState();
     }
 
+    private void Update()
+    {
+        DetectDefender();
+    }
     private void UpdateAnimationState()
     {
         /*
@@ -72,6 +76,8 @@ public class Attacker : MonoBehaviour
         }
         */
     }
+
+
 
     private void SetMovementSpeed(float speed)
     {
@@ -106,7 +112,6 @@ public class Attacker : MonoBehaviour
         {
             myRigidBody2D.gravityScale=0;
             GetComponent<BoxCollider2D>().enabled = false;
-            myAttackRangeCollider2D.enabled = false;
             GiveGold();
             myAnimator.SetTrigger("Death");
         }
@@ -143,10 +148,11 @@ public class Attacker : MonoBehaviour
         mySpriteRenderer.sortingOrder = lane;
     }
 
-    private void OnTriggerEnter2D(Collider2D otherCollider)
+
+    private void DetectDefender()
     {
-        GameObject otherObject = otherCollider.gameObject;
-        if (otherObject.GetComponent<Defender>() || otherObject.GetComponent<Castle>()) AttackTriggered(otherObject);
+        myAttackRaycast = Physics2D.Raycast(transform.position, Vector2.left, attackRange,attackLayer);
+        if (myAttackRaycast.collider != null) AttackTriggered(myAttackRaycast.collider.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D otherCollider)

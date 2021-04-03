@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     Animator myAnimator;
     SpriteRenderer mySpriteRenderer;
@@ -21,22 +21,13 @@ public class Weapon : MonoBehaviour
     }
     // Start is called before the first frame update
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void LevelUp()
     {
-        if (collision.gameObject.TryGetComponent(out Attacker attacker))
+        if (level< maxLevel)
         {
-            attacker.TakeDamage(GetDamage());
-        }
-    }
-
-    public void SetLevel(int toLevel)
-    {
-        if (toLevel<= maxLevel)
-        {
-            level = toLevel;
+            level++;
             UpdateSprite();
         }
-        else { Debug.LogError("Level doesn't exist"); }
     }
     public void UpdateSprite()
     {
@@ -54,7 +45,10 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetMouseButtonDown(1))
+        {
+            LevelUp();
+        }
     }
 
     private void Die()

@@ -13,7 +13,7 @@ public class Defender : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] GameObject throwPosition;
-    [SerializeField] Stats stats;
+    [SerializeField] Health stats;
     [SerializeField] Projectile projectile;
 
     int laneNo;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Castle : MonoBehaviour
 {
-    Stats myStats;
+    Health myStats;
     SpriteRenderer mySpriteRenderer;
     LevelController levelController;
     [SerializeField] GameObject loseDisplay;
@@ -13,7 +13,7 @@ public class Castle : MonoBehaviour
 
     void Start()
     {
-        myStats = GetComponent<Stats>();
+        myStats = GetComponent<Health>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         levelController = FindObjectOfType<LevelController>();
     }

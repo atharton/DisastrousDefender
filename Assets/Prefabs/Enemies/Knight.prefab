@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 4552182223603974648}
   - component: {fileID: 157087801354095807}
   - component: {fileID: 6936222523582499967}
-  - component: {fileID: 5233009051795133100}
   - component: {fileID: 7876826291684162350}
   - component: {fileID: 4635591575919591515}
   - component: {fileID: 1759111708365861403}
@@ -148,12 +147,12 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4552182223603974630}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 1
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
   m_Mass: 0.87169707
-  m_LinearDrag: 0.05
+  m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -187,22 +186,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8184204, y: 4.9485707}
   m_EdgeRadius: 0
---- !u!70 &5233009051795133100
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552182223603974630}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -2.7795858, y: -0.4416163}
-  m_Size: {x: 2.214511, y: 2.2145114}
-  m_Direction: 1
 --- !u!114 &7876826291684162350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
+  attackRange: 1
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 64
   currentTarget: {fileID: 0}
 --- !u!114 &4635591575919591515
 MonoBehaviour:
