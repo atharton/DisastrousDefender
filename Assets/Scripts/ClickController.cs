@@ -7,15 +7,17 @@ public class ClickController : MonoBehaviour
 {
     [SerializeField] GameObject weaponPrefab;
     [SerializeField] SpriteRenderer weaponDisplay;
+    [SerializeField] int maxWeaponInstance = 1;
+    Sprite weaponSpriteToDisplay;
     //[SerializeField] Vector2 mouseOffset =Vector2.zero;
     //GameObject weaponInstance;
     //Weapon weapon;
     DamageDealer damageDealer;
-    int maxWeaponInstance = 1 ;
     // Start is called before the first frame update
     void Awake()
     {
         damageDealer = GetComponent<DamageDealer>();
+        ChangeWeapon(weaponPrefab);
         //Cursor.visible = false;
         //Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //weaponInstance = Instantiate(weaponPrefab, cursorPos, Quaternion.identity);
@@ -38,18 +40,12 @@ public class ClickController : MonoBehaviour
         weaponInstance.transform.parent = transform;
     }
 
-    public void AttackWithWeapon(Attacker attacker, Rigidbody2D attackerRigidBody2D)
+    public void ChangeWeapon(GameObject newWeaponPrefab)
     {
-        //weapon.Attack();
-        //attacker.TakeDamage(weapon.GetDamage());
-        //Debug.Log("I deal " + weapon.GetDamage().ToString());
+        weaponPrefab = newWeaponPrefab;
+        weaponDisplay.sprite = weaponPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
     }
 
-    private IEnumerator Knockback(Rigidbody2D attackerRigidBody2D,Vector2 startPos, Vector2 endPos, int noOfFrames)
-    {
-        // somehow lerp the motion into 'noOfFrames' pieces
-        yield return new WaitForSeconds(1);
-    } 
     public float GetDamage()
     {
         return damageDealer.GetDamage();

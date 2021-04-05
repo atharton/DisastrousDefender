@@ -19,6 +19,7 @@ public class Attacker : MonoBehaviour
     Rigidbody2D myRigidBody2D;
     RaycastHit2D myAttackRaycast;
     DamageDealer myDamageDealer;
+    MaterialTintColor myMaterialTintColor;
     Health myStats;
     Drops myDrops;
     ClickController clickController;
@@ -31,17 +32,7 @@ public class Attacker : MonoBehaviour
     private void Awake()
     {
         FindObjectOfType<LevelController>().AttackerSpawned();
-    }
-
-    private void OnDestroy()
-    {
-
-        LevelController levelController = FindObjectOfType<LevelController>();
-        if(levelController != null)levelController.AttackerKilled();
-
-    }
-    private void Start()
-    {
+        myMaterialTintColor = GetComponent<MaterialTintColor>(); 
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
         myStats = GetComponent<Health>();
@@ -50,6 +41,13 @@ public class Attacker : MonoBehaviour
         myDamageDealer = GetComponent<DamageDealer>();
         origColor = mySpriteRenderer.color;
         clickController = FindObjectOfType<ClickController>();
+    }
+
+    private void OnDestroy()
+    {
+
+        LevelController levelController = FindObjectOfType<LevelController>();
+        if(levelController != null)levelController.AttackerKilled();
 
     }
 
@@ -101,12 +99,13 @@ public class Attacker : MonoBehaviour
 
     private void OnMouseDown()
     {
-        clickController.AttackWithWeapon(this,myRigidBody2D);
+        //clickController.AttackWithWeapon(this,myRigidBody2D);
     }
     public void TakeDamage(float damage)
     {
         myStats.reduceHealth(damage);
-        StartCoroutine(BlinkColor(Color.red));
+        //myMaterialTintColor.SetTintColor(Color.red);
+        //StartCoroutine(BlinkColor(Color.red));
         Debug.Log(0);
         if (myStats.GetCurrentHealth() == 0)
         {
