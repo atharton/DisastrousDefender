@@ -21,7 +21,7 @@ public class MaterialTintColor : MonoBehaviour {
     private float tintFadeSpeed;
 
     private void Awake() {
-        materialTintColor = new Color(255, 0, 0, 0);
+        materialTintColor = new Color(1, 0, 0, 0);
         SetMaterial(transform.Find("Body").GetComponent<SpriteRenderer>().material);
         tintFadeSpeed = 6f;
     }
