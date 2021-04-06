@@ -104,7 +104,9 @@ public class Attacker : MonoBehaviour
     public void TakeDamage(float damage)
     {
         myStats.reduceHealth(damage);
-        //myMaterialTintColor.SetTintColor(Color.red);
+        myMaterialTintColor.SetTintColor(Color.red);
+
+        myAnimator.SetBool("isTakingDamage",true);
         //StartCoroutine(BlinkColor(Color.red));
         Debug.Log(0);
         if (myStats.GetCurrentHealth() == 0)
@@ -114,6 +116,13 @@ public class Attacker : MonoBehaviour
             GiveGold();
             myAnimator.SetTrigger("Death");
         }
+
+    }
+
+    private void FinishTakingDamage()
+    {
+
+        myAnimator.SetBool("isTakingDamage", false);
     }
 
     private void GiveGold()
