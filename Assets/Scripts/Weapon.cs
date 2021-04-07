@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     Animator myAnimator;
     SpriteRenderer mySpriteRenderer;
+    [SerializeField] ParticleSystem HitVFX;
     [SerializeField] Sprite[] spriteList;
     [SerializeField] int baseDamage = 10;
     [SerializeField] int damageIncrement = 15;
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Attacker attacker))
         {
+            HitVFX.Play();
             attacker.TakeDamage(GetDamage());
         }
     }
