@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class Castle : MonoBehaviour
 {
-    Health myStats;
+    Health myHealth;
     SpriteRenderer mySpriteRenderer;
     LevelController levelController;
+    MaterialTintColor myMaterialTintColor;
+    [SerializeField] SpriteState spriteState;
     [SerializeField] GameObject loseDisplay;
     // Start is called before the first frame update
 
-    void Start()
+    void Awake()
     {
-        myStats = GetComponent<Health>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myHealth = GetComponent<Health>();
+        mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         levelController = FindObjectOfType<LevelController>();
+        myMaterialTintColor = GetComponent<MaterialTintColor>();
     }
     private IEnumerator BlinkColor(Color color)
     {
@@ -26,13 +29,34 @@ public class Castle : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        myStats.reduceHealth(damage);
-        StartCoroutine(BlinkColor(Color.yellow));
-        if (myStats.GetCurrentHealth() == 0)
+        myHealth.reduceHealth(damage);
+        //StartCoroutine(BlinkColor(Color.yellow));
+        myMaterialTintColor.SetTintColor(Color.yellow);
+        SpriteStateChange();
+        if (myHealth.GetCurrentHealth() <= 0)
         {
             LoseGame();
             //myAnimator.SetTrigger("Death");
         }
+    }
+
+    private void SpriteStateChange()
+    {
+        float currHealth = myHealth.GetCurrentHealth();
+        float maxHealth = myHealth.GetMaxHealth();
+        if (currHealth <= 0.2 * maxHealth)
+        {
+            spriteState.SetCurrentSprite(2);
+        }
+        else if (currHealth <= 0.5 * maxHealth)
+        {
+            spriteState.SetCurrentSprite(1);
+        }
+        else
+        {
+            spriteState.SetCurrentSprite(0);
+        }
+        mySpriteRenderer.sprite = spriteState.GetCurrentSprite();
     }
 
     private void LoseGame()

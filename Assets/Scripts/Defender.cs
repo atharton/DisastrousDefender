@@ -83,7 +83,7 @@ public class Defender : MonoBehaviour
     public void TakeDamage(float damage)
     {
         stats.reduceHealth(damage);
-        StartCoroutine(BlinkColor(Color.yellow));
+        //StartCoroutine(BlinkColor(Color.yellow));
         if (stats.GetCurrentHealth() == 0)
         {
             GetComponent<BoxCollider2D>().enabled = false;
