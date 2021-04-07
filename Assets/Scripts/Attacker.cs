@@ -23,6 +23,7 @@ public class Attacker : MonoBehaviour
     Health myStats;
     Drops myDrops;
     ClickController clickController;
+    AudioSource myAudioSource;
 
     Color origColor;
     int laneNo;
@@ -41,6 +42,7 @@ public class Attacker : MonoBehaviour
         myDamageDealer = GetComponent<DamageDealer>();
         origColor = mySpriteRenderer.color;
         clickController = FindObjectOfType<ClickController>();
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     private void OnDestroy()
@@ -103,6 +105,7 @@ public class Attacker : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        myAudioSource.Play();
         myStats.reduceHealth(damage);
         myMaterialTintColor.SetTintColor(Color.red);
 

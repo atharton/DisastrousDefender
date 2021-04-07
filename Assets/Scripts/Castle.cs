@@ -11,6 +11,7 @@ public class Castle : MonoBehaviour
     MaterialTintColor myMaterialTintColor;
     [SerializeField] SpriteState spriteState;
     [SerializeField] GameObject loseDisplay;
+    AudioSource myAudioSource;
     // Start is called before the first frame update
 
     void Awake()
@@ -19,6 +20,7 @@ public class Castle : MonoBehaviour
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         levelController = FindObjectOfType<LevelController>();
         myMaterialTintColor = GetComponent<MaterialTintColor>();
+        myAudioSource = GetComponent<AudioSource>();
     }
     private IEnumerator BlinkColor(Color color)
     {
@@ -29,6 +31,7 @@ public class Castle : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        myAudioSource.Play();
         myHealth.reduceHealth(damage);
         //StartCoroutine(BlinkColor(Color.yellow));
         myMaterialTintColor.SetTintColor(Color.yellow);
