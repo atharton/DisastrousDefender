@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 9014759334907712647}
   - component: {fileID: 556959953251983514}
   - component: {fileID: 6269487428257063957}
-  - component: {fileID: 7025118765916712306}
   - component: {fileID: 2538279087974631860}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpeed: 5
   usage: 1
+  maxWeaponInstance: 5
+  origin: {x: 0, y: 0}
 --- !u!114 &6269487428257063957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,21 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259df7e6493a1454eb948d982291ba74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
---- !u!114 &7025118765916712306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3945311549359111398}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d5b0dbe58a91146b7afb84ee830ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotating: 1
-  rotatingSpeed: -360
+  damage: 10
 --- !u!95 &2538279087974631860
 Animator:
   serializedVersion: 3
@@ -174,7 +161,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3945311549359111398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 09631f44a48c7bd4eaa56708e8179346, type: 2}
   m_CullingMode: 0

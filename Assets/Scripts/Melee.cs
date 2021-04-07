@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Melee : Weapon
 {
     Animator myAnimator;
     SpriteRenderer mySpriteRenderer;
@@ -10,8 +10,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] Sprite[] spriteList;
     [SerializeField] int baseDamage = 10;
     [SerializeField] int damageIncrement = 15;
+    [SerializeField] int maxWeaponInstance;
     int level = 1;
     int maxLevel;
+    public override int GetMaxWeaponInstance()
+    {
+        return maxWeaponInstance;
+    }
+    public Melee()
+    {
+
+    }
 
     public void Awake()
     {

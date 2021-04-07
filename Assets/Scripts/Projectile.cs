@@ -3,16 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Weapon
 {
     [SerializeField] float projectileSpeed = 5f;
+    [SerializeField] GameObject HitVFXPrefab;
     [SerializeField] int usage = 1;
+    [SerializeField] int maxWeaponInstance;
+    public Vector2 origin = Vector2.zero;
     DamageDealer myDamageDealer;
+    Rigidbody2D myRigidBody2D;
     int laneNo;
-    // Start is called before the first frame update
-    void Start()
+    public override int GetMaxWeaponInstance()
+    {
+        return maxWeaponInstance;
+    }
+
+    public Projectile(Vector2 targetPos)
+    {
+
+    }
+
+    public void Initialize(Vector2 targetPos)
+    {
+        transform.position = origin;
+        Vector3 aimDirection = (targetPos-origin).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0, 0, angle);
+        myRigidBody2D.velocity = (targetPos-origin).normalized*projectileSpeed;
+        Debug.Log("Hello4");
+    }
+
+    void Awake()
     {
         myDamageDealer = GetComponent<DamageDealer>();
+        myRigidBody2D = GetComponent<Rigidbody2D>();
+        origin = FindObjectOfType<Castle>().transform.position;
+    }
+    
+    private void Start()
+    {
+        //Initialize();
+    }
+
+    public void SetInitialVelocity(Vector2 velocity)
+    {
+        myRigidBody2D.velocity = velocity;
     }
 
     // Update is called once per frame
@@ -28,8 +63,9 @@ public class Projectile : MonoBehaviour
     // Called by collided object
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Attacker attacker = other.GetComponent<Attacker>();
-        if (attacker != null && laneNo == attacker.GetLaneNo())
+        GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
+        Destroy(hitVFX, 1f);
+        if (other.TryGetComponent(out Attacker attacker))
         {
             Hit();
             attacker.TakeDamage(myDamageDealer.GetDamage());
