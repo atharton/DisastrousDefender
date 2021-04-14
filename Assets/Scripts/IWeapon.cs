@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
-    //private int maxWeaponInstance;
+
+    protected int damageMultiplier = 1;
     public Weapon()
     {
     }

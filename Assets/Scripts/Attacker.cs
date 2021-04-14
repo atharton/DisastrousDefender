@@ -85,12 +85,11 @@ public class Attacker : MonoBehaviour
         currentSpeed = speed;
         force = new Vector2(-currentSpeed, 0);
         //Debug.Log(Time.deltaTime);
-        Debug.Log(force);
     }
 
     private void StopMoving()
     {
-        Debug.Log("I am called to stop");
+        //Debug.Log("I am called to stop");
         SetMovementSpeed(0);
     }
 
@@ -111,7 +110,6 @@ public class Attacker : MonoBehaviour
 
         myAnimator.SetBool("isTakingDamage",true);
         //StartCoroutine(BlinkColor(Color.red));
-        Debug.Log(0);
         if (myStats.GetCurrentHealth() == 0)
         {
             myRigidBody2D.gravityScale=0;

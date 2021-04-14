@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 5
+  HitVFXPrefab: {fileID: 7102259097360224387, guid: 55129b01d2458a044a4a58a64c5f69b0,
+    type: 3}
   usage: 1
   maxWeaponInstance: 5
   origin: {x: 0, y: 0}
@@ -161,7 +163,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3945311549359111398}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 09631f44a48c7bd4eaa56708e8179346, type: 2}
   m_CullingMode: 0

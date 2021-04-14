@@ -30,7 +30,6 @@ public class Projectile : Weapon
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
         myRigidBody2D.velocity = (targetPos-origin).normalized*projectileSpeed;
-        Debug.Log("Hello4");
     }
 
     void Awake()
@@ -68,7 +67,7 @@ public class Projectile : Weapon
         if (other.TryGetComponent(out Attacker attacker))
         {
             Hit();
-            attacker.TakeDamage(myDamageDealer.GetDamage());
+            attacker.TakeDamage(myDamageDealer.GetDamage()*damageMultiplier);
         }
         else return;
     }

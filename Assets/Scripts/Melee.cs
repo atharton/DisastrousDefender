@@ -61,7 +61,7 @@ public class Melee : Weapon
     }
     public int GetDamage()
     {
-        return baseDamage + (level * damageIncrement);
+        return (baseDamage + (level * damageIncrement))*damageMultiplier;
     }
 
     private void Update()

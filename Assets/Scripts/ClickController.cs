@@ -43,10 +43,8 @@ public class ClickController : MonoBehaviour
             weaponInstance.transform.parent = transform;
         }
         else if (weaponPrefab.TryGetComponent(out Projectile projectile) )
-        {
-            Debug.Log("3"); 
+        { 
             weaponInstance = Instantiate(weaponPrefab, projectile.origin, Quaternion.identity);
-            Debug.Log(weaponInstance);
             weaponInstance.GetComponent<Projectile>().Initialize(cursorPos);
             weaponInstance.transform.parent = transform;
         }
