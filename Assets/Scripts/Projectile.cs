@@ -34,6 +34,7 @@ public class Projectile : Weapon
 
     void Awake()
     {
+        damageMultiplier = 1; // why do I need this here? it somehow has 0 value
         myDamageDealer = GetComponent<DamageDealer>();
         myRigidBody2D = GetComponent<Rigidbody2D>();
         origin = FindObjectOfType<Castle>().transform.position;
@@ -62,12 +63,14 @@ public class Projectile : Weapon
     // Called by collided object
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
-        Destroy(hitVFX, 1f);
         if (other.TryGetComponent(out Attacker attacker))
         {
+            GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
+            Destroy(hitVFX, 1f);
+            Debug.Log("1: " + damageMultiplier);
+            attacker.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage()*damageMultiplier));
+            Debug.Log("2: " + damageMultiplier);
             Hit();
-            attacker.TakeDamage(myDamageDealer.GetDamage()*damageMultiplier);
         }
         else return;
     }

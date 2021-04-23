@@ -10,6 +10,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] LayerMask attackLayer;
+    [SerializeField] Transform pfDamagePopup;
     float currentSpeed;
     Vector2 force;
     //[SerializeField] float damage = 40;
@@ -44,6 +45,7 @@ public class Attacker : MonoBehaviour
         clickController = FindObjectOfType<ClickController>();
         myAudioSource = GetComponent<AudioSource>();
     }
+
 
     private void OnDestroy()
     {
@@ -102,8 +104,9 @@ public class Attacker : MonoBehaviour
     {
         //clickController.AttackWithWeapon(this,myRigidBody2D);
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
+        DamagePopup.Create(transform.position + new Vector3(0.1f,0,0), damage);
         myAudioSource.Play();
         myStats.reduceHealth(damage);
         myMaterialTintColor.SetTintColor(Color.red);

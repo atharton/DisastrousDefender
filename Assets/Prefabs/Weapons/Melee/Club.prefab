@@ -77,6 +77,7 @@ MonoBehaviour:
   baseDamage: 10
   damageIncrement: 15
   maxWeaponInstance: 1
+  subsequentReducedDamagePercentage: 0.2
 --- !u!60 &3801502601864599161
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -103,8 +104,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.09908193, y: 0.54228944}
-      - {x: -0.046842277, y: -0.15645327}
-      - {x: 0.02763626, y: -0.16239136}
+      - {x: -0.054868706, y: 0.14855097}
+      - {x: 0.04904007, y: 0.14528835}
       - {x: 0.1079908, y: 0.5381216}
 --- !u!82 &1246929418704741296
 AudioSource:

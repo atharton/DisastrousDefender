@@ -11,6 +11,8 @@ public class Melee : Weapon
     [SerializeField] int baseDamage = 10;
     [SerializeField] int damageIncrement = 15;
     [SerializeField] int maxWeaponInstance;
+    [SerializeField] [Range(0,1)]float subsequentReducedDamagePercentage = 0.2f;
+    float currentDamagePercentage = 1f;
     int level = 1;
     int maxLevel;
     public override int GetMaxWeaponInstance()
@@ -33,12 +35,19 @@ public class Melee : Weapon
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Attacker attacker))
+        if (currentDamagePercentage > 0 && collision.gameObject.TryGetComponent(out Attacker attacker))
         {
-            GameObject hitVFX = Instantiate(HitVFXPrefab,collision.transform.position,Quaternion.identity);
+            GameObject hitVFX = Instantiate(HitVFXPrefab, collision.transform.position, Quaternion.identity);
             Destroy(hitVFX, 1f);
-            attacker.TakeDamage(GetDamage());
+            attacker.TakeDamage(Mathf.RoundToInt(GetDamage() * currentDamagePercentage));
+            ReduceSubsequentDamage();
         }
+    }
+
+    private void ReduceSubsequentDamage()
+    {
+        if (currentDamagePercentage - subsequentReducedDamagePercentage <= 0) currentDamagePercentage = 0;
+        else currentDamagePercentage -= subsequentReducedDamagePercentage;
     }
 
     public void SetLevel(int toLevel)
@@ -61,6 +70,7 @@ public class Melee : Weapon
     }
     public int GetDamage()
     {
+        Debug.Log(damageMultiplier);
         return (baseDamage + (level * damageIncrement))*damageMultiplier;
     }
 
