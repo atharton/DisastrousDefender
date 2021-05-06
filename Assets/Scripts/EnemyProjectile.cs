@@ -21,12 +21,12 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("hit a " + other.gameObject);
-        if (other.TryGetComponent(out Castle castle))
+        if (other.TryGetComponent(out IDamageableByEnemy ally))
         {
             //Debug.Log("hit a castle");
             //GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
             //Destroy(hitVFX, 1f);
-            castle.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage() * damageMultiplier));
+            ally.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage() * damageMultiplier));
             Die();
         }
         else return;

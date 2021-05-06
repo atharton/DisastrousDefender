@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Castle : MonoBehaviour
+public class Castle : MonoBehaviour, IDamageableByEnemy
 {
     Health myHealth;
     SpriteRenderer mySpriteRenderer;
@@ -29,7 +29,7 @@ public class Castle : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         mySpriteRenderer.color = origColor;
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         myAudioSource.Play();
         myHealth.reduceHealth(damage);

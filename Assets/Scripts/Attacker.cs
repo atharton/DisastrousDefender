@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Attacker : MonoBehaviour
+public class Attacker : MonoBehaviour, IDamageableByAlly
 {
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float attackRange = 1f;
@@ -194,17 +194,11 @@ public class Attacker : MonoBehaviour
             myAnimator.SetBool("isAttacking", false);
             return;
         }
-
-        Defender defender = currentTarget.GetComponent<Defender>();
-        Castle castle = currentTarget.GetComponent<Castle>();
-        if (defender != null && defender.GetLaneNo()==laneNo)
+        if (currentTarget.TryGetComponent(out IDamageableByEnemy ally))
         {
-            defender.TakeDamage(myDamageDealer.GetDamage());
+            ally.TakeDamage(myDamageDealer.GetDamage());
         }
-        else if (castle != null)
-        {
-            castle.TakeDamage(myDamageDealer.GetDamage());
-        }
+        
         //else myAnimator.SetBool("isAttacking", false);
     }
     public void AttackThrow()

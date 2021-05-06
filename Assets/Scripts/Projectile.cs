@@ -63,12 +63,12 @@ public class Projectile : Weapon
     // Called by collided object
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Attacker attacker))
+        if (other.TryGetComponent(out IDamageableByAlly enemy))
         {
             GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
             Destroy(hitVFX, 1f);
             //Debug.Log("1: " + damageMultiplier);
-            attacker.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage()*damageMultiplier));
+            enemy.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage()*damageMultiplier));
             //Debug.Log("2: " + damageMultiplier);
             Hit();
         }

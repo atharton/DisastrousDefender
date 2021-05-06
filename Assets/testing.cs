@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testing : MonoBehaviour
+public class testing : MonoBehaviour, IDamageable
+{    private void Awake()
+    {
+        //TakeDamage(1);
+    }
+    public virtual void TakeDamage(int damage)
+    {
+        Debug.Log("original func");
+    }
+}
+
+public class testingDerived : testing
 {
-    private Rigidbody2D myRigidBody2D;
-    [SerializeField] float forcePower;
     private void Awake()
     {
-        myRigidBody2D = GetComponent<Rigidbody2D>();
+        //TakeDamage(1);
     }
-
-    private void Update()
+    public override void TakeDamage(int damage)
     {
-        Vector2 v2TP = transform.position;
-        myRigidBody2D.MovePosition(v2TP+(Vector2.left*1*Time.deltaTime));
-    }
-    private void OnMouseDown()
-    {
-        myRigidBody2D.AddForce(Vector2.right*forcePower);
+        Debug.Log("derived func");
     }
 }
