@@ -12,9 +12,9 @@ public class LevelTimer : MonoBehaviour
     bool triggeredLevelFinished = false;
     [SerializeField] bool[] phases;
     int phaseLength;
-    bool phase1Started = false;
-    bool phase2Started = false;
-    bool phase3Started = false;
+    //bool phase1Started = false;
+    //bool phase2Started = false;
+    //bool phase3Started = false;
     private void Awake()
     {
         slider = GetComponent<Slider>();

@@ -43,9 +43,13 @@ public class LevelController : MonoBehaviour
         SetWinLabel(true);
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(levelEndWaitTime);
-        GetComponent<LevelLoader>().LoadNextScene();
+        //GetComponent<LevelLoader>().LoadNextScene();
     }
-
+    public void HandleLoseCondition()
+    {
+        SetLoseLabel(true);
+        Time.timeScale = 0;
+    }
     private void SetWinLabel(bool setTo)
     {
         if (winLabel) winLabel.SetActive(setTo);
@@ -54,11 +58,7 @@ public class LevelController : MonoBehaviour
     {
         if (loseLabel) loseLabel.SetActive(setTo);
     }
-    public void HandleLoseCondition()
-    {
-        SetLoseLabel(true);
-        Time.timeScale = 0;
-    }
+
 
     void Start()
     {

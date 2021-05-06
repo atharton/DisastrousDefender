@@ -22,7 +22,6 @@ public class DayNightController : MonoBehaviour
         //Debug.Log("its nighttime");
         if (IsNightTime != null)
         {
-            Debug.Log("its nighttime"); 
             IsNightTime();
         }
     }
@@ -30,7 +29,6 @@ public class DayNightController : MonoBehaviour
     {
         if (IsDayTime != null)
         {
-            Debug.Log("its daytime");
             IsDayTime();
         }
     }

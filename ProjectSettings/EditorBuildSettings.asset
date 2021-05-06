@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SplashScreen.unity
-    guid: a5918c345e428c8418eab52f640e6b3c
   - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: 46d06c2b936b56f449fbbdc97917edca
   - enabled: 1
+    path: Assets/Scenes/Level Selector.unity
+    guid: 30635beb7f40349428b8a5699d1b9ded
+  - enabled: 1
     path: Assets/Scenes/level testing.unity
     guid: 4263e7081971de141a9d538fd4cb43f1
   - enabled: 1
-    path: Assets/Scenes/OptionsScreen.unity
-    guid: e0676e1c9ebfe444590d01681e53601d
-  - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: ad018361a63404e4397511d83de38de8
+  - enabled: 1
+    path: Assets/Scenes/OptionsScreen.unity
+    guid: e0676e1c9ebfe444590d01681e53601d
   m_configObjects: {}

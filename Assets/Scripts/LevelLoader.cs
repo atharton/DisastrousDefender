@@ -11,20 +11,28 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
+
         currentScene = SceneManager.GetActiveScene();
+        /*
         if  (currentScene.buildIndex == 0)
         {
             StartCoroutine(StartMenu(startMenuDelayInSeconds));
         }
+        */
     }
     public void LoadStartMenu()
     {
         Time.timeScale = 1; 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     public void LoadGame()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level Selector");
+        //FindObjectOfType<GameSession>().ResetScore();
+    }
+    public void LoadLevel(int level)
+    {
+        SceneManager.LoadScene(level + 1);
         //FindObjectOfType<GameSession>().ResetScore();
     }
     public void LoadNextScene()
@@ -38,7 +46,6 @@ public class LevelLoader : MonoBehaviour
     }
     public void LoadOptionsMenu()
     {
-        Debug.Log(0);
         SceneManager.LoadScene("OptionsScreen");
     }
     public void LoadGameOver()

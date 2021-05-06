@@ -845,7 +845,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2039821096}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadNextScene
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -939,8 +939,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0.25
-  duration: 1
-  easeType: 24
+  duration: 0.5
+  easeType: 27
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -1234,9 +1234,9 @@ RectTransform:
   m_Father: {fileID: 9131009}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -852, y: -439}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 195, y: 101}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882221037
@@ -1379,8 +1379,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0.35
-  duration: 1
-  easeType: 24
+  duration: 0.5
+  easeType: 27
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -1438,6 +1438,75 @@ MonoBehaviour:
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalString: 
+--- !u!1001 &974515922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794416031309210256, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3585533718194242035, guid: 2d71da8d7c0857e44904294b9f2917af,
+        type: 3}
+      propertyPath: m_Name
+      value: Music Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d71da8d7c0857e44904294b9f2917af, type: 3}
 --- !u!1001 &1305605827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1541,7 +1610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.9999804}
+  m_AnchoredPosition: {x: 0, y: 5.9999695}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332702407
@@ -1677,9 +1746,9 @@ RectTransform:
   m_Father: {fileID: 9131009}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 910, y: -443}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -101, y: 97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419202572
@@ -1822,8 +1891,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0.35
-  duration: 1
-  easeType: 24
+  duration: 0.5
+  easeType: 27
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -1917,9 +1986,9 @@ RectTransform:
   m_Father: {fileID: 9131009}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: 271}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 14, y: -269}
   m_SizeDelta: {x: 1875, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806601352
@@ -1968,8 +2037,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0.25
-  duration: 1
-  easeType: 24
+  duration: 0.5
+  easeType: 27
   easeCurve:
     serializedVersion: 2
     m_Curve:

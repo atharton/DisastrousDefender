@@ -1,33 +1,31 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.UI;
 
 public class Attacker : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float attackRange = 1f;
+    [SerializeField] GameObject enemyProjectilePrefab;
     [SerializeField] LayerMask attackLayer;
-    [SerializeField] Transform pfDamagePopup;
     float currentSpeed;
     Vector2 force;
-    //[SerializeField] float damage = 40;
     [SerializeField]GameObject currentTarget;
     SpriteRenderer mySpriteRenderer;
-    BoxCollider2D myBoxCollider2D;
+    //BoxCollider2D myBoxCollider2D;
     Rigidbody2D myRigidBody2D;
     RaycastHit2D myAttackRaycast;
     DamageDealer myDamageDealer;
     MaterialTintColor myMaterialTintColor;
-    Health myStats;
+    protected Health myHealth;
     Drops myDrops;
-    ClickController clickController;
+    //ClickController clickController;
     AudioSource myAudioSource;
+    RectTransform myRectTransform;
 
     Color origColor;
-    int laneNo;
+    int laneNo=0;
 
     Animator myAnimator;
 
@@ -37,13 +35,14 @@ public class Attacker : MonoBehaviour
         myMaterialTintColor = GetComponent<MaterialTintColor>(); 
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
-        myStats = GetComponent<Health>();
+        myHealth = GetComponent<Health>();
         myDrops = GetComponent<Drops>();
         myRigidBody2D = GetComponent<Rigidbody2D>();
         myDamageDealer = GetComponent<DamageDealer>();
         origColor = mySpriteRenderer.color;
-        clickController = FindObjectOfType<ClickController>();
+        //clickController = FindObjectOfType<ClickController>();
         myAudioSource = GetComponent<AudioSource>();
+        myRectTransform = GetComponent<RectTransform>();
     }
 
 
@@ -104,16 +103,16 @@ public class Attacker : MonoBehaviour
     {
         //clickController.AttackWithWeapon(this,myRigidBody2D);
     }
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         DamagePopup.Create(transform.position + new Vector3(0.1f,0,0), damage);
         myAudioSource.Play();
-        myStats.reduceHealth(damage);
+        myHealth.reduceHealth(damage);
         myMaterialTintColor.SetTintColor(Color.red);
 
         myAnimator.SetBool("isTakingDamage",true);
         //StartCoroutine(BlinkColor(Color.red));
-        if (myStats.GetCurrentHealth() == 0)
+        if (myHealth.GetCurrentHealth() == 0)
         {
             myRigidBody2D.gravityScale=0;
             GetComponent<BoxCollider2D>().enabled = false;
@@ -123,11 +122,6 @@ public class Attacker : MonoBehaviour
 
     }
 
-    private void FinishTakingDamage()
-    {
-
-        myAnimator.SetBool("isTakingDamage", false);
-    }
 
     private void GiveGold()
     {
@@ -164,10 +158,16 @@ public class Attacker : MonoBehaviour
     private void DetectDefender()
     {
         myAttackRaycast = Physics2D.Raycast(transform.position, Vector2.left, attackRange,attackLayer);
-        if (myAttackRaycast.collider != null) AttackTriggered(myAttackRaycast.collider.gameObject);
+        //Debug.Log("1 "+ transform.position+" "+myAttackRaycast.collider);
+        if (myAttackRaycast.collider != null) 
+        {
+            AttackTriggered(myAttackRaycast.collider.gameObject);
+            //Debug.Log("2");
+        }
+        else StopAttacking();
     }
 
-    private void OnTriggerExit2D(Collider2D otherCollider)
+    private void StopAttacking()
     {
         currentTarget = null;
         myAnimator.SetBool("isAttacking", false);
@@ -177,10 +177,14 @@ public class Attacker : MonoBehaviour
         currentTarget = target;
         myAnimator.SetBool("isAttacking", true);
     }
+    private void FinishTakingDamage()
+    { 
+        myAnimator.SetBool("isTakingDamage", false);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
     }
 
     public void Attack()
@@ -203,6 +207,14 @@ public class Attacker : MonoBehaviour
         }
         //else myAnimator.SetBool("isAttacking", false);
     }
- 
+    public void AttackThrow()
+    {
+        //Debug.Log("throwing");
+        GameObject weaponInstance = Instantiate(enemyProjectilePrefab, transform.position, Quaternion.identity);
+        weaponInstance.GetComponent<EnemyProjectile>().Initialize(currentTarget.transform.position);
+        weaponInstance.transform.parent = transform;
+    }
+
+
 }
 

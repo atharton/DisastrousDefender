@@ -8,7 +8,7 @@ public class GameSession : MonoBehaviour
     int highScore = 0;
     void Awake()
     {
-        SetUpSingleton();
+        //SetUpSingleton()
     }
 
     private void SetUpSingleton()

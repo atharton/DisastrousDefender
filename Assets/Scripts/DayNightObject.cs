@@ -36,7 +36,7 @@ public class DayNightObject : MonoBehaviour
                 nightLightIntensity, 
                 fadeOutTime).OnUpdate(()=>myLight2D.intensity = lightIntensity);
 
-            Debug.Log("I am called night222");
+            //Debug.Log("I am called night222");
         }
     }
     private void onDay()
@@ -50,8 +50,6 @@ public class DayNightObject : MonoBehaviour
                 x => lightIntensity = x,
                 dayLightIntensity,
                 fadeOutTime).OnUpdate(() => myLight2D.intensity = lightIntensity);
-
-            Debug.Log("I am called night222");
         }
     }
     private void OnDestroy()

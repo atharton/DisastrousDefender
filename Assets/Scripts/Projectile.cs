@@ -67,9 +67,9 @@ public class Projectile : Weapon
         {
             GameObject hitVFX = Instantiate(HitVFXPrefab, other.transform.position, Quaternion.identity);
             Destroy(hitVFX, 1f);
-            Debug.Log("1: " + damageMultiplier);
+            //Debug.Log("1: " + damageMultiplier);
             attacker.TakeDamage(Mathf.RoundToInt(myDamageDealer.GetDamage()*damageMultiplier));
-            Debug.Log("2: " + damageMultiplier);
+            //Debug.Log("2: " + damageMultiplier);
             Hit();
         }
         else return;
