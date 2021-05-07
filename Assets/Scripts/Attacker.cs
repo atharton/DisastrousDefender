@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour, IDamageableByAlly
 {
+    public static int attackerCount = 0;
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] GameObject enemyProjectilePrefab;
@@ -29,9 +30,17 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
 
     protected Animator myAnimator;
 
+    private void OnEnable()
+    {
+        attackerCount++;
+    }
+    private void OnDisable()
+    {
+        attackerCount--;
+    }
     private void Awake()
     {
-        FindObjectOfType<LevelController>().AttackerSpawned();
+        FindObjectOfType<LevelController>().AttackerSpawned();// CHANGE TO check Attacker Count
         myMaterialTintColor = GetComponent<MaterialTintColor>(); 
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();

@@ -21,6 +21,8 @@ public class AttackerSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(waitTime-waitTimeVariance,  waitTime+waitTimeVariance));
             SpawnAttacker();
         }
+        while(Attacker.attackerCount > 0)
+        Destroy(gameObject, 2f);
     }
     private void SpawnAttacker()
     {

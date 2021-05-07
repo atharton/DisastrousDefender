@@ -11,7 +11,7 @@ public class WaveConfig : MonoBehaviour
 
     IEnumerator Start()
     {
-        Debug.Log("test");
+        //Debug.Log("test");
         int spawnerCount = spawnPositions.Length;
         for (int waveIndex = 0; waveIndex < attackerWaves.Length; waveIndex++)
         {
@@ -20,7 +20,7 @@ public class WaveConfig : MonoBehaviour
             for (int index = 0; index < spawnerCount; index++)
             {
                 Transform spawnPosition = spawnPositions[index];
-                Debug.Log("test " + spawnPosition);
+                //Debug.Log("test " + spawnPosition);
                 AttackerSpawner spawner = Instantiate(GameAssets.i.AttackerSpawnerPrefab, spawnPosition.position, Quaternion.identity);
                 spawner.transform.parent = spawnPosition;
                 spawner.SetAttackerPrefabs(currAttackerWave.attackerPrefabArray);
