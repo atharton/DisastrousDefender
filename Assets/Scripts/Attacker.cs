@@ -27,7 +27,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
     Color origColor;
     int laneNo=0;
 
-    Animator myAnimator;
+    protected Animator myAnimator;
 
     private void Awake()
     {
@@ -45,7 +45,10 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
         myRectTransform = GetComponent<RectTransform>();
     }
 
-
+    private void Start()
+    {
+        mySpriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y*10);
+    }
     private void OnDestroy()
     {
 
@@ -187,7 +190,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
         //Debug.Log(collision.gameObject);
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         if (currentTarget == null)
         {
@@ -201,7 +204,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
         
         //else myAnimator.SetBool("isAttacking", false);
     }
-    public void AttackThrow()
+    public virtual void AttackThrow()
     {
         //Debug.Log("throwing");
         GameObject weaponInstance = Instantiate(enemyProjectilePrefab, transform.position, Quaternion.identity);

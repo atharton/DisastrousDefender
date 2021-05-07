@@ -21,13 +21,13 @@ public class Defender : MonoBehaviour
 
     SpriteRenderer mySpriteRenderer;
     Animator myAnimator;
-    AttackerSpawner laneSpawner;
+    //AttackerSpawner laneSpawner;
 
     void Start()
     {
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
-        laneSpawner = GetMyLaneSpawner();
+        //laneSpawner = GetMyLaneSpawner();
     }
 
    
@@ -36,6 +36,7 @@ public class Defender : MonoBehaviour
     {
         AnimationState();
     }
+    /*
     private AttackerSpawner GetMyLaneSpawner()
     {
         AttackerSpawner[] spawners = FindObjectsOfType<AttackerSpawner>();
@@ -45,7 +46,7 @@ public class Defender : MonoBehaviour
         }
         return null;
     }
-
+    */
     private void AnimationState()
     {
         if (SeeEnemy()) myAnimator.SetBool("isAttacking", true);
@@ -54,8 +55,9 @@ public class Defender : MonoBehaviour
 
     private bool SeeEnemy()
     {
-        if (laneSpawner.transform.childCount > 0) return true;
-        else return false;
+        //if (laneSpawner.transform.childCount > 0) return true;
+        //else return false;
+        return false;
     }
 
     public void Attack()

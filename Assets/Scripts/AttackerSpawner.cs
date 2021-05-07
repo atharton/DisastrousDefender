@@ -5,22 +5,23 @@ using UnityEngine;
 public class AttackerSpawner : MonoBehaviour
 {
     bool spawn = true;
-    [Range(1, 5)] [SerializeField] int laneNo;
+    //[Range(1, 5)] [SerializeField] int laneNo;
     [SerializeField] float startingWaitTime = 2f;
     [SerializeField] float waitTime = 5f;
     [SerializeField] float waitTimeVariance = 1f;
+    [SerializeField] int maxEnemyCount = 5;
     [SerializeField] Attacker[] attackerPrefabArray;
+    int currEnemyCount = 0;
     // Start is called before the first frame update
     IEnumerator Start()
     {
         yield return new WaitForSeconds(startingWaitTime);
-        while (spawn)
+        while (spawn && currEnemyCount<maxEnemyCount)
         {
             yield return new WaitForSeconds(Random.Range(waitTime-waitTimeVariance,  waitTime+waitTimeVariance));
             SpawnAttacker();
         }
     }
-
     private void SpawnAttacker()
     {
         Attacker currentAttacker = attackerPrefabArray[Random.Range(0,attackerPrefabArray.Length)];
@@ -31,9 +32,23 @@ public class AttackerSpawner : MonoBehaviour
     {
         Attacker newAttacker = Instantiate(attackerPrefab, transform.position, transform.rotation) as Attacker;
         newAttacker.transform.parent = transform;
-        newAttacker.SetLaneNo(laneNo);
+        currEnemyCount++;
+        //newAttacker.SetLaneNo(laneNo);
     }
 
+    public void SetAttackerPrefabs(Attacker[] attackerPrefabs)
+    {
+        attackerPrefabArray = attackerPrefabs;
+    }
+    public void SetMaxEnemyCount(int enemyCountPerWave)
+    {
+        maxEnemyCount = enemyCountPerWave;
+    }
+    public void SetWaitTime(float waitTime, float variance=0)
+    {
+        this.waitTime = waitTime;
+        this.waitTimeVariance = variance;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,10 +57,6 @@ public class AttackerSpawner : MonoBehaviour
     public void StopSpawning()
     {
         spawn = false;
-    }
-    public int GetLaneNo()
-    {
-        return laneNo;
     }
 }
 
