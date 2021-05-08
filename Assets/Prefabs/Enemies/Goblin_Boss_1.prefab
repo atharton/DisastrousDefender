@@ -206,6 +206,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
+  isUnstoppable: 1
   currentTarget: {fileID: 0}
   reinforcementPrefab: {fileID: 4552182223603974630, guid: 0b4107e1b88a097459e0a93b471f54ee,
     type: 3}

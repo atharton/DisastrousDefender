@@ -21,8 +21,6 @@ public class AttackerSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(waitTime-waitTimeVariance,  waitTime+waitTimeVariance));
             SpawnAttacker();
         }
-        while(Attacker.attackerCount > 0)
-        Destroy(gameObject, 2f);
     }
     private void SpawnAttacker()
     {
@@ -54,7 +52,8 @@ public class AttackerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currEnemyCount != maxEnemyCount) return;
+        else if (transform.childCount == 0) Destroy(gameObject, 1f);
     }
     public void StopSpawning()
     {

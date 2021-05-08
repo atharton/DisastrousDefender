@@ -206,6 +206,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
+  isUnstoppable: 1
   currentTarget: {fileID: 0}
 --- !u!114 &4635591575919591515
 MonoBehaviour:

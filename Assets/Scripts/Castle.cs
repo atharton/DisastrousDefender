@@ -7,10 +7,10 @@ public class Castle : MonoBehaviour, IDamageableByEnemy
 {
     Health myHealth;
     SpriteRenderer mySpriteRenderer;
-    LevelController levelController;
+    //LevelController levelController;
     MaterialTintColor myMaterialTintColor;
     [SerializeField] SpriteState spriteState;
-    [SerializeField] GameObject loseDisplay;
+    //[SerializeField] GameObject loseDisplay;
     AudioSource myAudioSource;
     // Start is called before the first frame update
 
@@ -18,17 +18,17 @@ public class Castle : MonoBehaviour, IDamageableByEnemy
     {
         myHealth = GetComponent<Health>();
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        levelController = FindObjectOfType<LevelController>();
+        //levelController = FindObjectOfType<LevelController>();
         myMaterialTintColor = GetComponent<MaterialTintColor>();
         myAudioSource = GetComponent<AudioSource>();
     }
-    private IEnumerator BlinkColor(Color color)
+    /*private IEnumerator BlinkColor(Color color)
     {
         Color origColor = mySpriteRenderer.color;
         mySpriteRenderer.color = color;
         yield return new WaitForSeconds(0.1f);
         mySpriteRenderer.color = origColor;
-    }
+    }*/
     public void TakeDamage(int damage)
     {
         myAudioSource.Play();
@@ -66,7 +66,7 @@ public class Castle : MonoBehaviour, IDamageableByEnemy
     {
         //yield return new WaitForSeconds(3);
         mySpriteRenderer.color = Color.red;   //change to animation
-        levelController.HandleLoseCondition();
+        LevelController.current.Lose();
         
     }
 }

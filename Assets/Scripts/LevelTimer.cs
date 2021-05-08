@@ -28,7 +28,7 @@ public class LevelTimer : MonoBehaviour
         if (timeExpired)
         {
             triggeredLevelFinished = true;
-            FindObjectOfType<LevelController>().LevelTimerFinished();
+            //FindObjectOfType<LevelController>().LevelTimerFinished();
         }
         CheckDayNightCycle();
 

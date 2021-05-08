@@ -1,15 +1,31 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using DG.Tweening;
 
 public class LevelController : MonoBehaviour
 {
+    public static LevelController current;
+
     [SerializeField] GameObject winLabel;
     [SerializeField] GameObject loseLabel;
     [SerializeField] float levelEndWaitTime = 3;
     int numberOfAttackers = 0;
     bool levelTimerFinished = false;
+
+
+
+
+
+    private void Awake()
+    {
+        current = this;
+        WaveConfig.current.IsFinishedSpawning += LevelTimerFinished;
+        SetWinLabel(false);
+        SetLoseLabel(false);
+    }
+    
 
     public void LevelTimerFinished()
     {
@@ -38,6 +54,11 @@ public class LevelController : MonoBehaviour
         }
     }
     
+    public void Lose()
+    {
+        StartCoroutine(HandleLoseCondition());
+    }
+
     public IEnumerator HandleWinCondition()
     {
         SetWinLabel(true);
@@ -45,9 +66,12 @@ public class LevelController : MonoBehaviour
         yield return new WaitForSeconds(levelEndWaitTime);
         //GetComponent<LevelLoader>().LoadNextScene();
     }
-    public void HandleLoseCondition()
+    public IEnumerator HandleLoseCondition()
     {
         SetLoseLabel(true);
+        yield return new WaitForSeconds(levelEndWaitTime);
+        //float myFloat = Time.timeScale;
+        //DOTween.To(() => myFloat, x => myFloat = x, 0, 1).OnUpdate(() => Time.timeScale = myFloat);
         Time.timeScale = 0;
     }
     private void SetWinLabel(bool setTo)

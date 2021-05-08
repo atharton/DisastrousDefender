@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour, IDamageableByAlly
 {
-    public static int attackerCount = 0;
+    //public static int attackerCount = 0;
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] GameObject enemyProjectilePrefab;
     [SerializeField] LayerMask attackLayer;
+    [SerializeField] bool isUnstoppable = false;
     float currentSpeed;
     Vector2 force;
     [SerializeField]GameObject currentTarget;
@@ -30,14 +31,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
 
     protected Animator myAnimator;
 
-    private void OnEnable()
-    {
-        attackerCount++;
-    }
-    private void OnDisable()
-    {
-        attackerCount--;
-    }
+  
     private void Awake()
     {
         FindObjectOfType<LevelController>().AttackerSpawned();// CHANGE TO check Attacker Count
@@ -122,7 +116,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
         myHealth.reduceHealth(damage);
         myMaterialTintColor.SetTintColor(Color.red);
 
-        myAnimator.SetBool("isTakingDamage",true);
+        if (!isUnstoppable)myAnimator.SetBool("isTakingDamage",true);
         //StartCoroutine(BlinkColor(Color.red));
         if (myHealth.GetCurrentHealth() == 0)
         {
@@ -218,7 +212,7 @@ public class Attacker : MonoBehaviour, IDamageableByAlly
         //Debug.Log("throwing");
         GameObject weaponInstance = Instantiate(enemyProjectilePrefab, transform.position, Quaternion.identity);
         weaponInstance.GetComponent<EnemyProjectile>().Initialize(currentTarget.transform.position);
-        weaponInstance.transform.parent = transform;
+        //weaponInstance.transform.parent = transform;
     }
 
 
